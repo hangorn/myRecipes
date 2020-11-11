@@ -1,0 +1,230 @@
+/* Pantalla de login */
+.login-information {
+    min-width: 300px;
+    flex: 0;
+    background: #dddddd;
+    border: 1px solid gold;
+}
+.login-screen {
+	background: #eeeeee;
+}
+/* Hace que la pantalla de login se coloque verticalmente en pantallas pequeñas */
+@media (max-width: 800px) {
+
+    .login-screen {
+        flex-direction: column;
+    }
+
+    .login-information {
+		flex-direction: row;
+		min-height: min-content;
+    }
+    .login-information h1 {
+    	font-size: var(--lumo-font-size-xl);
+    }
+    .login-information img {
+	    height: 50px;
+	    padding-left: 25%;
+    }
+}
+
+/** Dialogo de carga */
+.v-loading-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: auto;
+  animation: fadein 0.3s ease-out 0.2s normal 1 both;
+  z-index: 2147483647;
+}
+@keyframes fadein {
+  0% {
+    background: rgba(0,0,0,0);
+  }
+  100% {
+    background: rgba(0,0,0,.5);
+  }
+}
+.v-loading-indicator:before {
+  width: 76px;
+  height: 76px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  margin: -38px 0 0 -38px;
+
+   background-image:
+        /* 10% = 126deg = 90 + ( 360 * .1 ) */
+        linear-gradient(126deg, transparent 50%, gold 50%),
+        linear-gradient(90deg, gold 50%, transparent 50%);
+
+  border-radius: 100%;
+  animation: bouncedelay 2s infinite 0.4s ease-in-out both;
+  content: "";
+}
+
+.v-loading-indicator.first:before {
+  background-color: skyblue;
+}
+.v-loading-indicator.second:before {
+  background-color: orange;
+}
+.v-loading-indicator.third:before {
+  background-color: salmon;
+}
+@keyframes bouncedelay {
+  0%, 100% {
+    transform: scale(0.1);
+  } 40% {
+    transform: scale(1.0);
+  }
+}
+.v-loading-indicator:after {
+  content: "Por favor, espere...";
+  font-weight: bold;
+   
+  width: 160px;
+  height: 160px;
+  margin: -80px 0 0 -80px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.v-loading-indicator.first:after {
+  color: skyblue;
+}
+.v-loading-indicator.second:after {
+  color: orange;
+}
+.v-loading-indicator.third:after {
+  color: salmon;
+}
+
+.caja-borde {
+	border: 1px solid var(--lumo-primary-color-50pct);
+	border-radius: 10px;
+	margin-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+}
+
+.etiqueta {
+	border-radius: var(--lumo-border-radius);
+	padding: 2px 10px;
+}
+
+.tab-borde vaadin-tab {
+  border-left: 1px solid var(--lumo-primary-color-50pct);
+  border-right: 1px solid var(--lumo-primary-color-50pct);
+  border-top: 1px solid var(--lumo-primary-color-50pct);
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 2px 2px rgba(0,0,0,.4);
+}
+.tab-borde vaadin-tab:hover {
+  background-color: var(--lumo-primary-color-10pct);
+}
+.tab-borde vaadin-tab[selected]:before { 
+  height: 0px;
+}
+.tab-borde vaadin-tab[selected] {
+  background-color: rgb(240, 242, 248);
+  color: var(--lumo-primary-color);
+}
+
+vaadin-button {
+  cursor: pointer;
+  box-shadow: 1px 1px 5px var(--lumo-primary-color);
+}
+vaadin-button:hover {
+  box-shadow: -1px -1px 5px var(--lumo-primary-color);
+}
+
+.error-background {
+  color: var(--lumo-error-color);
+  background-color: var(--lumo-error-color-10pct);
+}
+.error-background-contrast {
+  color: var(--lumo-error-contrast-color);
+  background-color: var(--lumo-error-color);
+}
+
+.success-background {
+  color: var(--lumo-success-color);
+  background-color: var(--lumo-success-color-10pct);
+}
+.success-background-contrast {
+  color: var(--lumo-success-contrast-color);
+  background-color: var(--lumo-success-color);
+}
+
+.primary-background {
+  color: var(--lumo-primary-color);
+  background-color: var(--lumo-primary-color-10pct);
+}
+.primary-background-contrast {
+  color: var(--lumo-primary-contrast-color);
+  background-color: var(--lumo-primary-color);
+}
+
+.gold-background {
+  color: var(--gold-color);
+  background-color: var(--gold-color-10pct);
+}
+.gold-background-contrast {
+  color: var(--gold-contrast-color);
+  background-color: var(--gold-color);
+}
+
+.blue-background {
+  color: var(--blue-color);
+  background-color: var(--blue-color-10pct);
+}
+.blue-background-contrast {
+  color: var(--blue-contrast-color);
+  background-color: var(--blue-color);
+}
+
+.grey-background {
+  color: var(--grey-color);
+  background-color: var(--grey-color-10pct);
+}
+.grey-background-contrast {
+  color: var(--grey-contrast-color);
+  background-color: var(--grey-color);
+}
+
+.negrita {
+	font-weight: bold;
+}
+
+:root {
+/*  Para cambiar el color principal */
+/*     --lumo-primary-color: #ca4835; */
+/*  Para cambiar el color de fondo principal */
+	--lumo-base-color: rgb(240, 242, 248);
+
+	--gold-color: rgb(255, 171, 0);
+	--gold-color-50pct: rgba(255, 171, 0, 0.5);
+	--gold-color-10pct: rgba(255, 171, 0, 0.1);
+	--gold-contrast-color: #FFF;
+	
+	--blue-color: hsl(214, 90%, 52%);
+	--blue-color-50pct: hsla(214, 90%, 52%, 0.5);
+	--blue-color-10pct: hsla(214, 90%, 52%, 0.1);
+	--blue-contrast-color: #FFF;
+	
+	--grey-color: rgb(85, 85 ,85);
+	--grey-color-50pct: rgba(85, 85, 85, 0.5);
+	--grey-color-10pct: rgba(85, 85, 85, 0.1);
+	--grey-contrast-color: #FFF;
+	
+
+}
+        
+
+

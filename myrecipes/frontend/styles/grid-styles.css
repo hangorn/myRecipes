@@ -1,0 +1,23 @@
+/* Para celdas con fondo rojo */
+.error-background {
+  color: var(--lumo-error-color);
+  background-color: var(--lumo-error-color-10pct);
+}
+.error-background-contrast {
+  color: var(--lumo-error-contrast-color);
+  background-color: var(--lumo-error-color);
+}
+
+/* Color de la cabecera */
+thead tr th[part~="cell"] {
+  background-color: rgb(206, 212, 223);
+  color: var( --lumo-primary-color);
+}
+
+.negrita {
+	font-weight: bold;
+}
+
+:host(.clickable) ::slotted(vaadin-grid-cell-content) {
+	cursor: pointer;
+}

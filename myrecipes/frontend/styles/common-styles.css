@@ -1,0 +1,34 @@
+/* componentes de solo lectura con fondo claro */
+:host([readOnly]) [part="input-field"] {
+  background-color: var(--lumo-contrast-5pct) !important;
+}
+
+/* campos con fondo de color */
+:host(.error-background-field) [part="input-field"] {
+  color: var(--lumo-error-color);
+  background-color: var(--lumo-error-color-10pct) !important;
+}
+:host(.success-background-field) [part="input-field"] {
+  color: var(--lumo-success-color);
+  background-color: var(--lumo-success-color-10pct) !important;
+}
+:host(.primary-background-field) [part="input-field"] {
+  color: var(--lumo-primary-color);
+  background-color: var(--lumo-primary-color-10pct) !important;
+}
+:host(.gold-background-field) [part="input-field"] {
+  color: var(--gold-color);
+  background-color: var(--gold-color-10pct) !important;
+}
+:host(.blue-background-field) [part="input-field"] {
+  color: var(--blue-color);
+  background-color: var(--blue-color-10pct) !important;
+}
+:host(.grey-background-field) [part="input-field"] {
+  color: var(--grey-color);
+  background-color: var(--grey-color-10pct) !important;
+}
+
+:host(.multiline) [part="label"] {
+	white-space: normal;
+}
