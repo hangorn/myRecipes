@@ -114,6 +114,7 @@
     </dependencies>
 
     <build>
+		<finalName>recetas</finalName>
         <defaultGoal>jetty:run</defaultGoal>
         <plugins>
             <plugin>
@@ -134,6 +135,7 @@
 					<excludes>
 						<exclude>**/README</exclude>
 						<exclude>**/pom.xml</exclude>
+						<exclude>src/docs/**</exclude>
 						<exclude>src/test/**</exclude>
 						<exclude>src/main/resources/**</exclude>
 						<exclude>src/main/webapp/img/**</exclude>
