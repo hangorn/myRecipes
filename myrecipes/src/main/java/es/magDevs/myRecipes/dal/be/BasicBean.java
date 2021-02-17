@@ -15,24 +15,24 @@
  */
 package es.magDevs.myRecipes.dal.be;
 
-public class BasicBE implements Cloneable {
+public class BasicBean implements Cloneable {
 
 	private Long id;
 	
-	public BasicBE() {
+	public BasicBean() {
 	}
 	
-	public BasicBE(Long id) {
+	public BasicBean(Long id) {
 		this.id = id;
 	}
 	
-	public BasicBE(BasicBE be) {
+	public BasicBean(BasicBean be) {
 		this.id = be.id;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		return getId() != null && obj instanceof BasicBE && getId().equals(((BasicBE) obj).getId());
+		return getId() != null && obj instanceof BasicBean && getId().equals(((BasicBean) obj).getId());
 	}
 	
 	@Override
@@ -42,7 +42,7 @@ public class BasicBE implements Cloneable {
 	
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
-		return new BasicBE(this);
+		return new BasicBean(this);
 	}
 	
 	public Long getId() {

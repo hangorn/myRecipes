@@ -23,7 +23,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-import es.magDevs.myRecipes.dal.be.BasicBE;
+import es.magDevs.myRecipes.dal.be.BasicBean;
 import es.magDevs.myRecipes.dal.dao.AbstractDAO;
 import es.magDevs.myRecipes.dal.dao.BasicDAO;
 
@@ -33,7 +33,7 @@ import es.magDevs.myRecipes.dal.dao.BasicDAO;
  *
  * @param <BEAN>
  */
-public abstract class MyBasicDAO<BEAN extends BasicBE> extends AbstractDAO implements BasicDAO<BEAN> {
+public abstract class MyBasicDAO<BEAN extends BasicBean> extends AbstractDAO implements BasicDAO<BEAN> {
 
 	public MyBasicDAO(Connection connection) {
 		super(connection);

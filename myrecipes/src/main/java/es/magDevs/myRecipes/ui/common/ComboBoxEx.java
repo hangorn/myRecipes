@@ -21,14 +21,14 @@ import java.util.Map;
 
 import com.vaadin.flow.component.combobox.ComboBox;
 
-import es.magDevs.myRecipes.dal.be.BasicBE;
+import es.magDevs.myRecipes.dal.be.BasicBean;
 
 /**
  * ComboBox con funciones mejoradas
  *
  * @param <T> tipo de bean que tendra como valor el combo
  */
-public class ComboBoxEx<T extends BasicBE> extends ComboBox<T> {
+public class ComboBoxEx<T extends BasicBean> extends ComboBox<T> {
 	
 	/**
 	 * Valores que puede tomar el combo mapeador por ID

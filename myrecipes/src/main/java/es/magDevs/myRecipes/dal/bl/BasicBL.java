@@ -17,11 +17,11 @@ package es.magDevs.myRecipes.dal.bl;
 
 import java.util.List;
 
-import es.magDevs.myRecipes.dal.be.BasicBE;
+import es.magDevs.myRecipes.dal.be.BasicBean;
 import es.magDevs.myRecipes.dal.dao.BasicDAO;
 import es.magDevs.myRecipes.dal.dao.DAOFactory;
 
-public abstract class BasicBL<BEAN extends BasicBE> extends AbstractBL {
+public abstract class BasicBL<BEAN extends BasicBean> extends AbstractBL {
 	
 	public List<BEAN> getList(BEAN filtro) throws Exception {
 		return execute(factory -> getDao(factory).getList(filtro));

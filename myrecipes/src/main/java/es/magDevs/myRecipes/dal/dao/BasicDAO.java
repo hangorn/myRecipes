@@ -17,7 +17,7 @@ package es.magDevs.myRecipes.dal.dao;
 
 import java.util.List;
 
-import es.magDevs.myRecipes.dal.be.BasicBE;
+import es.magDevs.myRecipes.dal.be.BasicBean;
 
 /**
  * Intefaz que define operaciones basicas: crear, modificar, listar, borrar
@@ -25,7 +25,7 @@ import es.magDevs.myRecipes.dal.be.BasicBE;
  *
  * @param <BEAN>
  */
-public interface BasicDAO<BEAN extends BasicBE> {
+public interface BasicDAO<BEAN extends BasicBean> {
 	List<BEAN> getList(BEAN filtro) throws Exception;
 	List<BEAN> getList() throws Exception;
 	BEAN getById(Long id) throws Exception;
