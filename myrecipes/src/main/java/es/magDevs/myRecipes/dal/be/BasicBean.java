@@ -32,7 +32,7 @@ public class BasicBean implements Cloneable {
 
 	@Override
 	public boolean equals(Object obj) {
-		return getId() != null && obj instanceof BasicBean && getId().equals(((BasicBean) obj).getId());
+		return this == obj || (getId() != null && obj instanceof BasicBean && getId().equals(((BasicBean) obj).getId()));
 	}
 	
 	@Override
