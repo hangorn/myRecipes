@@ -1,0 +1,13 @@
+@media (max-width: 800px) {
+	:host(.boton-responsive ) [part="label"] {
+		display: none;
+	}
+	:host(.boton-responsive ) [part="prefix"] {
+		margin: 0;
+	}
+	:host(vaadin-button.boton-responsive) {
+		min-width: var(--lumo-button-size);
+		padding-left: calc(var(--lumo-button-size)/4);
+		padding-right: calc(var(--lumo-button-size)/4);
+	}
+}

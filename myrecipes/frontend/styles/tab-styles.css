@@ -1,0 +1,7 @@
+/* Tab seleccionado */
+:host([selected].primary-tab-selected) {
+	background-color: var(--light-green-color);
+	color: var(--light-green-contrast-color);
+	border-radius: 5px;
+	margin: 0 2px;
+}

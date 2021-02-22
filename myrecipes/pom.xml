@@ -114,7 +114,7 @@
     </dependencies>
 
     <build>
-		<finalName>recetas</finalName>
+		<finalName>myrec</finalName>
         <defaultGoal>jetty:run</defaultGoal>
         <plugins>
             <plugin>
@@ -166,7 +166,7 @@
                     <scanIntervalSeconds>0</scanIntervalSeconds>
                     <!-- Use war output directory to get the webpack files -->
                     <webAppConfig>
-                    	<contextPath>/myreci</contextPath>
+                    	<contextPath>/myrec</contextPath>
                         <allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
 <!-- 						<jettyEnvXml>jettyWebapp.xml</jettyEnvXml> -->
 					</webAppConfig>

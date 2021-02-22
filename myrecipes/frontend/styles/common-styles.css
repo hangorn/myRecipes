@@ -1,34 +1,55 @@
+/* Hoja de estilos que se funciona para cada componente (shadow-root de los WebComponets)
+ */
+
 /* componentes de solo lectura con fondo claro */
 :host([readOnly]) [part="input-field"] {
-  background-color: var(--lumo-contrast-5pct) !important;
+	background-color: var(--lumo-contrast-5pct) !important;
 }
 
 /* campos con fondo de color */
 :host(.error-background-field) [part="input-field"] {
-  color: var(--lumo-error-color);
-  background-color: var(--lumo-error-color-10pct) !important;
+	color: var(--lumo-error-color);
+	background-color: var(--lumo-error-color-10pct) !important;
 }
 :host(.success-background-field) [part="input-field"] {
-  color: var(--lumo-success-color);
-  background-color: var(--lumo-success-color-10pct) !important;
+	color: var(--lumo-success-color);
+	background-color: var(--lumo-success-color-10pct) !important;
 }
 :host(.primary-background-field) [part="input-field"] {
-  color: var(--lumo-primary-color);
-  background-color: var(--lumo-primary-color-10pct) !important;
+	color: var(--lumo-primary-color);
+	background-color: var(--lumo-primary-color-10pct) !important;
 }
 :host(.gold-background-field) [part="input-field"] {
-  color: var(--gold-color);
-  background-color: var(--gold-color-10pct) !important;
+	color: var(--gold-color);
+	background-color: var(--gold-color-10pct) !important;
 }
 :host(.blue-background-field) [part="input-field"] {
-  color: var(--blue-color);
-  background-color: var(--blue-color-10pct) !important;
+	color: var(--blue-color);
+	background-color: var(--blue-color-10pct) !important;
 }
 :host(.grey-background-field) [part="input-field"] {
-  color: var(--grey-color);
-  background-color: var(--grey-color-10pct) !important;
+	color: var(--grey-color);
+	background-color: var(--grey-color-10pct) !important;
 }
 
 :host(.multiline) [part="label"] {
 	white-space: normal;
+}
+
+/* Estilos para elementos contenidos en un menu desplegable */
+/* Sin margen por arriba*/
+:host(.menu-desplegable.vaadin-menu-item) [has-label] {
+	padding-top: 0;
+}
+
+
+/* Para pantallas pequeñas: */
+@media (max-width: 800px) {
+	/* Reducimos el tamaño del espaciado de los menus */
+	:host([theme~="spacing"]) ::slotted(*) {
+		margin-left: 1px;
+	}
+	:host([theme~="spacing"])::before {
+		margin-left: -1px;
+	}
 }

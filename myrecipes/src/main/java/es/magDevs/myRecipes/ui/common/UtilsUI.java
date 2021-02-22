@@ -74,6 +74,10 @@ public class UtilsUI {
 	 */
 	public static final String ESTILO_NEGRITA = "negrita";
 	/**
+	 * Estilo para mostrar un tab seleccionado con color
+	 */
+	public static final String ESTILO_PRIMARY_TAB_SELECTED = "primary-tab-selected";
+	/**
 	 * Estilo para fijar como color de fondo el color de error claro (rojo) y como color de texto el color de error mas oscuro
 	 */
 	public static final String ESTILO_ERROR_BACKGROUND = "error-background";

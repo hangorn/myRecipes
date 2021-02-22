@@ -1,0 +1,89 @@
+.pestanas-cerrables {
+	display: flex;
+	overflow: hidden;
+	box-shadow: none;
+}
+.pestana-cerrable-boton {
+	margin-left: 5px;
+	padding: 4px 0;
+}
+.pestana-cerrable vaadin-button.pestana-cerrable-boton:hover {
+	color: var(- -lumo-error-color);
+}
+.pestana-cerrable, .pestana-cerrable-boton {
+	color: var(- -lumo-contrast-70pct);
+}
+.pestana-cerrable[selected], .pestana-cerrable[selected] .pestana-cerrable-boton {
+	color: var(- -lumo-primary-color);
+}
+
+.pestana-cerrable {
+	position: relative;
+	float: left;
+	background: #e5e9f0;
+	background-image: linear-gradient(to bottom, #fff, #e5e9f0);
+	padding: 5px 5px 0 15px;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+	border-radius: 10px 0 0 0;
+	box-shadow: 0 2px 2px rgba(0, 0, 0, .4);
+	cursor: pointer;
+	overflow: visible; /*Vaadin oculta por defecto el contenido que no quepa, hay que mostrarlo para el borde derecho inclinado*/
+}
+
+.pestana-cerrable::after {
+	content: '';
+	position: absolute;
+	z-index: 1;
+	top: -2px;
+	right: -15px;
+	bottom: 0;
+	left: auto;
+	height: auto;
+	width: 15px;
+	background: #e5e9f0;
+	background-image: linear-gradient(to bottom, #fff, #e5e9f0);
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, .4);
+	transform: skew(10deg);
+	border-radius: 0 10px 0 0;
+	opacity: 1;
+	/*Vaadin usa este pseudocomponente para mostrar la linea de seleccion superior (y lo oculta por defecto), hay que mostrarlo para el borde derecho inclinado*/
+	display: block;
+}
+
+.pestana-cerrable[selected], .pestana-cerrable[selected]::after {
+	background: var(- -lumo-base-color);
+	background-image: linear-gradient(to bottom, #fff, var(- -lumo-base-color));
+	z-index: 3;
+	border-top: 2px solid var(- -lumo-primary-color);
+	cursor: default;
+}
+
+.pestana-cerrable span {
+	margin: 0 3px 0 5px;
+}
+
+.pestana-cerrable:focus, .pestana-cerrable:focus::after {
+  background: var(--lumo-base-color);
+}
+.pestana-cerrable:hover, .pestana-cerrable:hover::after {
+  background: #fff;
+}
+
+.pestana-cerrable[selected]:hover,
+.pestana-cerrable[selected]:hover::after {
+	background: var(- -lumo-base-color);
+	background-image: linear-gradient(to bottom, #fff, var(- -lumo-base-color));
+}
+
+.pestana-cerrable-boton {
+	width: 17px;
+	height: 17px;
+	min-width: 17px;
+	min-height: 17px;
+	padding-top: 0;
+}
+.pestana-cerrable-boton iron-icon {
+	width: 17px;
+	height: 17px;
+	vertical-align: top;
+}

@@ -46,6 +46,7 @@ import com.vaadin.flow.theme.lumo.Lumo;
 
 import es.magDevs.myRecipes.ui.auth.AccessControl;
 import es.magDevs.myRecipes.ui.common.UtilsUI;
+import es.magDevs.myRecipes.ui.ingredient.IngredientView;
 import es.magDevs.myRecipes.ui.recipes.RecipesView;
 
 /**
@@ -56,6 +57,7 @@ import es.magDevs.myRecipes.ui.recipes.RecipesView;
 @CssImport("./styles/shared-styles.css")
 @CssImport(value="./styles/grid-styles.css", themeFor = "vaadin-grid")
 @CssImport(value="./styles/dialog-styles.css", themeFor = "vaadin-dialog-overlay")
+@CssImport(value="./styles/tab-styles.css", themeFor = "vaadin-tab")
 @CssImport(value="./styles/common-styles.css", themeFor = "*")
 @Push
 public class MainView extends AppLayout implements PageConfigurator, RouterLayout {
@@ -73,15 +75,14 @@ public class MainView extends AppLayout implements PageConfigurator, RouterLayou
 		barraSuperior.setWidthFull();
 		barraSuperior.getStyle().set("padding-left", "2px");
 		barraSuperior.getStyle().set("border-bottom", "1px solid var(--lumo-contrast-20pct)");
-		barraSuperior.getElement().setAttribute("theme", Lumo.DARK);
 		addToNavbar(barraSuperior);
         VerticalLayout menuLayout = new VerticalLayout();
         menuLayout.setPadding(false);
         menuLayout.setHeightFull();
-        menuLayout.getElement().setAttribute("theme", Lumo.DARK);
         addToDrawer(menuLayout);
 		
-        tabs = new Tabs(buildTab("field.configuracion", UtilsUI.ICONO_RECIPES.create(), RecipesView.class),
+        tabs = new Tabs(buildTab("field.recetas", UtilsUI.ICONO_RECIPES.create(), RecipesView.class),
+        		buildTab("field.ingredientes", UtilsUI.ICONO_RECIPES.create(), IngredientView.class),
         		buildTab("field.configuracion", VaadinIcon.COG.create(), null));
         tabs.setOrientation(Tabs.Orientation.VERTICAL);
         tabs.setSizeFull();
@@ -116,6 +117,7 @@ public class MainView extends AppLayout implements PageConfigurator, RouterLayou
 		RouterLink routerLink = new RouterLink();
 		routerLink.add(icon, txt);
 		Tab tab = new Tab(routerLink);
+        tab.addClassName(UtilsUI.ESTILO_PRIMARY_TAB_SELECTED);
 		
 		if(view==null) {
 			tabSubmenu = routerLink;

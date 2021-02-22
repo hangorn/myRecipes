@@ -6,3 +6,16 @@
 	border-radius: 0;
 	border: 2px solid var(--lumo-primary-color);
 }
+
+:host([theme~="full-screen-dialog"]) [part="overlay"] {
+	width: 99%;
+	height: 99%;
+}
+
+:host([theme~="full-screen-dialog"]) [part="overlay"] [part="content"] {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	overflow: hidden;
+	margin: -2px;
+}

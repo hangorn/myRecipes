@@ -1,3 +1,7 @@
+/* Hoja de estilos que se funciona en toda la aplicacion 
+ *(pero no dentro de los shadow-root de los WebComponets, para eso usar 'common-styles.css')
+ */
+
 /* Pantalla de login */
 .login-information {
     min-width: 300px;
@@ -30,14 +34,14 @@
 
 /** Dialogo de carga */
 .v-loading-indicator {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: auto;
-  animation: fadein 0.3s ease-out 0.2s normal 1 both;
-  z-index: 2147483647;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	pointer-events: auto;
+	animation: fadein 0.3s ease-out 0.2s normal 1 both;
+	z-index: 2147483647;
 }
 @keyframes fadein {
   0% {
@@ -68,40 +72,43 @@
 }
 
 .v-loading-indicator.first:before {
-  background-color: skyblue;
+	background-color: skyblue;
 }
+
 .v-loading-indicator.second:before {
-  background-color: orange;
+	background-color: orange;
 }
+
 .v-loading-indicator.third:before {
-  background-color: salmon;
+	background-color: salmon;
 }
+
 @keyframes bouncedelay {
-  0%, 100% {
-    transform: scale(0.1);
-  } 40% {
-    transform: scale(1.0);
-  }
+	0%, 100% {
+		transform: scale(0.1);
+	} 40% {
+		transform: scale(1.0);
+	}
 }
 .v-loading-indicator:after {
-  content: "Por favor, espere...";
-  font-weight: bold;
-   
-  width: 160px;
-  height: 160px;
-  margin: -80px 0 0 -80px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
+	content: "Por favor, espere...";
+	font-weight: bold;
+	 
+	width: 160px;
+	height: 160px;
+	margin: -80px 0 0 -80px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
 }
 .v-loading-indicator.first:after {
-  color: skyblue;
+	color: skyblue;
 }
 .v-loading-indicator.second:after {
-  color: orange;
+	color: orange;
 }
 .v-loading-indicator.third:after {
-  color: salmon;
+	color: salmon;
 }
 
 .caja-borde {
@@ -119,94 +126,153 @@
 }
 
 .tab-borde vaadin-tab {
-  border-left: 1px solid var(--lumo-primary-color-50pct);
-  border-right: 1px solid var(--lumo-primary-color-50pct);
-  border-top: 1px solid var(--lumo-primary-color-50pct);
-  border-radius: 10px 10px 0 0;
-  box-shadow: 0 2px 2px rgba(0,0,0,.4);
+  	border-left: 1px solid var(- -lumo-primary-color-50pct);
+	border-right: 1px solid var(- -lumo-primary-color-50pct);
+	border-top: 1px solid var(- -lumo-primary-color-50pct);
+	border-radius: 10px 10px 0 0;
+	box-shadow: 0 2px 2px rgba(0, 0, 0, .4);
 }
 .tab-borde vaadin-tab:hover {
-  background-color: var(--lumo-primary-color-10pct);
+	background-color: var(- -lumo-primary-color-10pct);
 }
-.tab-borde vaadin-tab[selected]:before { 
-  height: 0px;
+.tab-borde vaadin-tab[selected]:before {
+	height: 0px;
 }
 .tab-borde vaadin-tab[selected] {
-  background-color: rgb(240, 242, 248);
-  color: var(--lumo-primary-color);
+	background-color: rgb(240, 242, 248);
+	color: var(- -lumo-primary-color);
 }
 
 vaadin-button {
-  cursor: pointer;
-  box-shadow: 1px 1px 5px var(--lumo-primary-color);
+	cursor: pointer;
+	box-shadow: 1px 1px 5px var(- -lumo-primary-color);
 }
 vaadin-button:hover {
-  box-shadow: -1px -1px 5px var(--lumo-primary-color);
+	box-shadow: -1px -1px 5px var(- -lumo-primary-color);
+}
+
+/* Estilos para elementos contenidos en un menu desplegable */
+/* Sin margen por la derecha*/
+vaadin-context-menu-list-box .menu-desplegable.vaadin-menu-item {
+	padding-right: 0;
+}
+/* Con margen por todos lados */
+vaadin-context-menu-list-box .menu-desplegable-margen.menu-desplegable.vaadin-menu-item {
+	margin-right: var(--lumo-space-m);
+	margin-left: var(--lumo-space-m);
+}
+vaadin-context-menu-list-box .menu-desplegable-margen.menu-desplegable.vaadin-menu-item:first-child {
+	margin-top: var(--lumo-space-m);
+}
+vaadin-context-menu-list-box .menu-desplegable-margen.menu-desplegable.vaadin-menu-item:last-child {
+	margin-bottom: var(--lumo-space-m);
+}
+/* Sin cambiar de fondo cuando se pasa el cursor por encima */
+vaadin-context-menu-list-box .menu-desplegable.vaadin-menu-item:hover {
+	background-color: initial;
+}
+/* Ancho ampliado */
+vaadin-context-menu-overlay vaadin-context-menu-list-box .menu-desplegable.vaadin-menu-item {
+	width: 500px;
+}
+vaadin-context-menu-overlay[phone] vaadin-context-menu-list-box .menu-desplegable.vaadin-menu-item {
+	width: 100%;
 }
 
 .error-background {
-  color: var(--lumo-error-color);
-  background-color: var(--lumo-error-color-10pct);
+	color: var(- -lumo-error-color);
+	background-color: var(- -lumo-error-color-10pct);
 }
 .error-background-contrast {
-  color: var(--lumo-error-contrast-color);
-  background-color: var(--lumo-error-color);
+	color: var(- -lumo-error-contrast-color);
+	background-color: var(- -lumo-error-color);
 }
 
 .success-background {
-  color: var(--lumo-success-color);
-  background-color: var(--lumo-success-color-10pct);
+	color: var(- -lumo-success-color);
+	background-color: var(- -lumo-success-color-10pct);
 }
 .success-background-contrast {
-  color: var(--lumo-success-contrast-color);
-  background-color: var(--lumo-success-color);
+	color: var(- -lumo-success-contrast-color);
+	background-color: var(- -lumo-success-color);
 }
 
 .primary-background {
-  color: var(--lumo-primary-color);
-  background-color: var(--lumo-primary-color-10pct);
+	color: var(- -lumo-primary-color);
+	background-color: var(- -lumo-primary-color-10pct);
 }
 .primary-background-contrast {
-  color: var(--lumo-primary-contrast-color);
-  background-color: var(--lumo-primary-color);
+	color: var(- -lumo-primary-contrast-color);
+	background-color: var(- -lumo-primary-color);
 }
 
 .gold-background {
-  color: var(--gold-color);
-  background-color: var(--gold-color-10pct);
+	color: var(- -gold-color);
+	background-color: var(- -gold-color-10pct);
 }
 .gold-background-contrast {
-  color: var(--gold-contrast-color);
-  background-color: var(--gold-color);
+	color: var(- -gold-contrast-color);
+	background-color: var(- -gold-color);
 }
 
 .blue-background {
-  color: var(--blue-color);
-  background-color: var(--blue-color-10pct);
+	color: var(- -blue-color);
+	background-color: var(- -blue-color-10pct);
 }
 .blue-background-contrast {
-  color: var(--blue-contrast-color);
-  background-color: var(--blue-color);
+	color: var(- -blue-contrast-color);
+	background-color: var(- -blue-color);
 }
 
 .grey-background {
-  color: var(--grey-color);
-  background-color: var(--grey-color-10pct);
+	color: var(- -grey-color);
+	background-color: var(- -grey-color-10pct);
 }
 .grey-background-contrast {
-  color: var(--grey-contrast-color);
-  background-color: var(--grey-color);
+	color: var(- -grey-contrast-color);
+	background-color: var(- -grey-color);
 }
 
 .negrita {
 	font-weight: bold;
 }
 
+.icono-redondo{
+	border-radius: 100%;
+ 	flex-shrink: 0;
+ 	height: var(--lumo-size-s);
+ 	margin-right: var(--lumo-space-m);
+    vertical-align: middle;
+ 	width: var(--lumo-size-s);
+}
+/* Para pantallas pequeñas: */
+@media (max-width: 800px) {
+	/* Quitamos el margen derecho en el boton de usuario (no va a tener texto) */
+	.icono-redondo{
+ 		margin-right: 0;
+	}
+	/* Quitamos el margen al boton del menu lateral */
+	vaadin-drawer-toggle {
+		margin: 0;
+	}
+}
+
 :root {
 /*  Para cambiar el color principal */
 /*     --lumo-primary-color: #ca4835; */
 /*  Para cambiar el color de fondo principal */
-	--lumo-base-color: rgb(240, 242, 248);
+	--lumo-base-color: rgb(224, 255, 224);
+	
+	
+	--lumo-primary-color-10pct: rgba(0, 106, 0, 0.1);
+	--lumo-primary-color-50pct: rgba(0, 106, 0, 0.5);
+	--lumo-primary-color: rgb(0, 106, 0);
+	--lumo-primary-contrast-color: #FFF;
+	
+	--light-green-color: rgb(178, 255, 178);
+	--light-green-color-50pct: rgba(178, 255, 178, 0.5);
+	--light-green-color-10pct: rgba(178, 255, 178, 0.1);
+	--light-green-contrast-color: var(--lumo-primary-color);
 
 	--gold-color: rgb(255, 171, 0);
 	--gold-color-50pct: rgba(255, 171, 0, 0.5);
@@ -223,8 +289,4 @@ vaadin-button:hover {
 	--grey-color-10pct: rgba(85, 85, 85, 0.1);
 	--grey-contrast-color: #FFF;
 	
-
 }
-        
-
-

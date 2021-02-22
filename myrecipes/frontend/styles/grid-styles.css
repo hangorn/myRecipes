@@ -1,17 +1,20 @@
 /* Para celdas con fondo rojo */
 .error-background {
-  color: var(--lumo-error-color);
-  background-color: var(--lumo-error-color-10pct);
+	color: var(--lumo-error-color);
+	background-color: var(--lumo-error-color-10pct);
 }
 .error-background-contrast {
-  color: var(--lumo-error-contrast-color);
-  background-color: var(--lumo-error-color);
+	color: var(--lumo-error-contrast-color);
+	background-color: var(--lumo-error-color);
 }
 
 /* Color de la cabecera */
-thead tr th[part~="cell"] {
-  background-color: rgb(206, 212, 223);
-  color: var( --lumo-primary-color);
+thead tr th[part~="header-cell"] {
+	background-color: var(--light-green-color);
+	color: var(--light-green-contrast-color);
+}
+thead tr th[part~="header-cell"] ::slotted(vaadin-grid-cell-content) {
+	font-weight: bold;
 }
 
 .negrita {

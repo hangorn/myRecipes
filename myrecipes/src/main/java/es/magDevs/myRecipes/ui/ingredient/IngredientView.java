@@ -13,11 +13,10 @@
  * the License for the specific language governing permissions and
  * under the License.
  */
-package es.magDevs.myRecipes.ui.recipes;
+package es.magDevs.myRecipes.ui.ingredient;
 
 import java.util.Arrays;
 
-import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -26,15 +25,13 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
 
 import es.magDevs.myRecipes.ui.MainView;
 
 @Route(layout = MainView.class)
-@RouteAlias(value = "", layout = MainView.class)
-public class RecipesView extends VerticalLayout {
+public class IngredientView extends VerticalLayout {
 
-	public RecipesView() {
+	public IngredientView() {
 		add(new Span("Test"));
 		Button btn1 = new Button("Boton 1", VaadinIcon.ABACUS.create());
 		btn1.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
