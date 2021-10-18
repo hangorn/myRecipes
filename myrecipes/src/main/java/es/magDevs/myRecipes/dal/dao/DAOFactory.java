@@ -24,16 +24,17 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import javax.sql.PooledConnection;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import es.magDevs.myRecipes.dal.be.RecetaBean;
 
 public abstract class DAOFactory {
 
 	public static final int MYSQL = 1;
 	
-	protected String dataSource = "MySQLDB";
+	protected static String dataSource = "MySQLDB";
 	
 	protected static int numConexiones = 0;
 
@@ -53,12 +54,6 @@ public abstract class DAOFactory {
 	// Control de transacciones anidadas para evitar la confirmación o cancelación incorrecta de cambios
 	protected boolean transaccionAnidada = false;
 	
-	protected String url = null;
-
-	protected String user = null;
-
-	protected String pass = null;
-
 	protected String dbaFileProperties = "dbal.properties";
 
 	// Log de salida
@@ -67,9 +62,7 @@ public abstract class DAOFactory {
 	// Resources
 	private static HashMap<String, ResourceBundle> properties;
 	
-	// pool interno
-	protected static DataSource ocpds;
-	protected static PooledConnection pc;
+	private static DataSource ds;
 
 	static {
 		properties = new HashMap<String, ResourceBundle>();
@@ -93,6 +86,34 @@ public abstract class DAOFactory {
 				return null;
 		}
 	}
+	
+	private static synchronized DataSource getDataSource() throws NamingException {
+		if (ds == null) {
+			Context envTomcatContext = null;
+			Context dsTomcatContext = null;
+			
+			try {
+				// Modo TOMCAT
+				envTomcatContext = new InitialContext();
+				dsTomcatContext = (Context) envTomcatContext.lookup("java:comp/env");
+
+				ds = (DataSource) dsTomcatContext.lookup("jdbc/" + dataSource);
+			} catch (NamingException e3) {
+				e3.printStackTrace();
+				throw e3;
+			} finally {
+				// Liberamos los recursos de contexto utilizados para acceder al datasource en modo Tomcat
+				try {
+					if (envTomcatContext != null) {
+						envTomcatContext.close();
+					}
+				} catch (NamingException ne) {
+					logger.error("Error liberando contexto al obtener conexión", ne);
+				}
+			}
+		}
+		return ds;
+	}
 
 	public synchronized Connection getConnection() throws Exception {
 		
@@ -107,38 +128,16 @@ public abstract class DAOFactory {
 		// está cerrada (no podemos reutilizarla) para obtener una nueva
 		} else if (connection == null || connection.isClosed()) {
 			try {
-				
-				Context envTomcatContext = null;
-				Context dsTomcatContext = null;
-				
-				try {
-					// Modo TOMCAT
-					envTomcatContext = new InitialContext();
-					dsTomcatContext = (Context) envTomcatContext.lookup("java:comp/env");
+				connection = getDataSource().getConnection();
+				numConexiones++;
 
-					DataSource ds = (DataSource) dsTomcatContext.lookup("jdbc/" + dataSource);
-					connection = ds.getConnection();
-					numConexiones++;
-
-					if (Thread.currentThread().getStackTrace().length > 5) {
-						StackTraceElement stElem = Thread.currentThread().getStackTrace()[5];
-						logger.debug("Creamos una conexion - POOL TOMCAT, hay " + numConexiones
-								+ ". Origen: " + stElem.getClassName() + "." + stElem.getMethodName() + " ("
-								+ stElem.getLineNumber() + ")");
-					} else {
-						logger.debug("Creamos una conexion, hay " + numConexiones);
-					}
-				} catch (NamingException e3) {
-					throw e3;
-				} finally {
-					// Liberamos los recursos de contexto utilizados para acceder al datasource en modo Tomcat
-					try {
-						if (envTomcatContext != null) {
-							envTomcatContext.close();
-						}
-					} catch (NamingException ne) {
-						logger.error("Error liberando contexto al obtener conexión", ne);
-					}
+				if (Thread.currentThread().getStackTrace().length > 5) {
+					StackTraceElement stElem = Thread.currentThread().getStackTrace()[5];
+					logger.debug("Creamos una conexion - POOL TOMCAT, hay " + numConexiones
+							+ ". Origen: " + stElem.getClassName() + "." + stElem.getMethodName() + " ("
+							+ stElem.getLineNumber() + ")");
+				} else {
+					logger.debug("Creamos una conexion, hay " + numConexiones);
 				}
 			} catch (NamingException e) {
 				throw e;
@@ -315,5 +314,7 @@ public abstract class DAOFactory {
 	public int getPoolUse(){
 		return -1;
 	}
+	
+	public abstract BasicDAO<RecetaBean> getRecetasDao() throws Exception;
 
 }

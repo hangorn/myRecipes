@@ -21,6 +21,9 @@ import java.util.Properties;
 
 import javax.naming.NamingException;
 
+import es.magDevs.myRecipes.dal.be.RecetaBean;
+import es.magDevs.myRecipes.dal.dao.mysql.MyRecetasDAO;
+
 public class MySqlDAOFactory extends DAOFactory {
 
 	private static String DRIVER_NAME = "com.mysql.jdbc.Driver";
@@ -49,5 +52,9 @@ public class MySqlDAOFactory extends DAOFactory {
 //	public UsuariosDAO getUsuariosDAO() throws Exception {
 //		return new MyUsuariosDAO(getConnection());
 //	}
-
+	
+	@Override
+	public BasicDAO<RecetaBean> getRecetasDao() throws Exception {
+		return new MyRecetasDAO(getConnection());
+	}
 }

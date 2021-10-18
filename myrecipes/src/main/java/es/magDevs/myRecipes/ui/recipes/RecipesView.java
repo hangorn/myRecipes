@@ -17,7 +17,6 @@ package es.magDevs.myRecipes.ui.recipes;
 
 import java.util.Arrays;
 
-import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -49,5 +48,38 @@ public class RecipesView extends VerticalLayout {
 		ComboBox<String> combo = new ComboBox<String>("Combo 1");
 		combo.setItems(Arrays.asList("Fila 1", "Fila 2", "Fila 3"));
 		add(btn1, btn2, btn3, grid, combo);
+		
+//		try {
+//			add(""+new RecetasBL().getList().size());
+//		} catch (Exception e) {
+//			MainErrorHandler.handleError(e);
+//		}
+		
+//		try {
+////			add(new Html("<div>"+new String(FicherosBL.getInstance().consultar("/dbNas", "_DSC3346.jpg"))+"</div>"));
+//			StreamResource res = new StreamResource("_DSC3346.jpg", () -> {
+//				try {
+//					return new ByteArrayInputStream(FicherosBL.getInstance().consultar("/dbNas", "_DSC3346.jpg"));
+//				} catch (Exception e) {
+//					return new ByteArrayInputStream(new byte[0]);
+//				}
+//			});
+//			add(new Image(res, ""));
+//		} catch (Exception e) {
+//			MainErrorHandler.handleError(e);
+//		}
+//		
+//		MemoryBuffer buffer = new MemoryBuffer();
+//		Upload aaa = new Upload(buffer);
+//		aaa.addSucceededListener(e->subirFichero(buffer));
+//		add(aaa);
 	}
+
+//	private void subirFichero(MemoryBuffer buffer) {
+//		try {
+//			FicherosBL.getInstance().guardar(IOUtils.toByteArray(buffer.getInputStream()), buffer.getFileName(), "/dbNas");
+//		} catch (Exception e) {
+//			MainErrorHandler.handleError(e);
+//		}
+//	}
 }

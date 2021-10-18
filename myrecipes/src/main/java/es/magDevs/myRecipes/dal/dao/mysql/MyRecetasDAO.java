@@ -21,10 +21,10 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
-import es.magDevs.myRecipes.dal.be.TipoBean;
+import es.magDevs.myRecipes.dal.be.RecetaBean;
 import es.magDevs.myRecipes.dal.dao.BasicDAO;
 
-public class MyRecetasDAO extends MyBasicDAO<TipoBean> implements BasicDAO<TipoBean> {
+public class MyRecetasDAO extends MyBasicDAO<RecetaBean> implements BasicDAO<RecetaBean> {
 	private static final String TABLA = "recetas";
 	private static final List<String> COLUMNAS = Arrays.asList("descripcion");
 	
@@ -43,8 +43,8 @@ public class MyRecetasDAO extends MyBasicDAO<TipoBean> implements BasicDAO<TipoB
 	}
 
 	@Override
-	protected TipoBean getBeanFromRs(ResultSet rs) throws SQLException {
-		TipoBean bean = new TipoBean();
+	protected RecetaBean getBeanFromRs(ResultSet rs) throws SQLException {
+		RecetaBean bean = new RecetaBean();
 		int i = 1;
 		bean.setId(rs.getLong(i++));
 		bean.setDescripcion(rs.getString(i++));
@@ -52,19 +52,19 @@ public class MyRecetasDAO extends MyBasicDAO<TipoBean> implements BasicDAO<TipoB
 	}
 
 	@Override
-	protected String getConditions(TipoBean filtro, List<Object> params) throws Exception {
+	protected String getConditions(RecetaBean filtro, List<Object> params) throws Exception {
 		String where = addEqualCondition("", params, "id", filtro.getId());
 		where = addLikeCondition(where, params, "descripcion", filtro.getDescripcion());
 		return where;
 	}
 
 	@Override
-	protected List<Object> getValoresFromBean(TipoBean bean) {
+	protected List<Object> getValoresFromBean(RecetaBean bean) {
 		return Arrays.asList(bean.getDescripcion());
 	}
 
 	@Override
-	protected TipoBean getNewBean() {
-		return new TipoBean();
+	protected RecetaBean getNewBean() {
+		return new RecetaBean();
 	}
 }

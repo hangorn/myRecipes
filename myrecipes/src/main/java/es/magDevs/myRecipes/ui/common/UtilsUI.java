@@ -16,11 +16,13 @@
 package es.magDevs.myRecipes.ui.common;
 
 import java.io.InputStream;
+import java.util.Optional;
 
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.HasValueAndElement;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dialog.Dialog;
@@ -37,6 +39,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.i18n.I18NProvider;
+import com.vaadin.flow.server.Command;
 import com.vaadin.flow.server.InputStreamFactory;
 import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.server.VaadinService;
@@ -357,5 +360,9 @@ public class UtilsUI {
 	public static void addAsSuffix(Component container, Component component) {
 		component.getElement().setAttribute("slot", "suffix");
 		container.getElement().appendChild(component.getElement());
+	}
+	
+	public static void accessUI(Optional<UI> optUI, Command command) {
+		optUI.ifPresent(ui->ui.access(command));
 	}
 }
