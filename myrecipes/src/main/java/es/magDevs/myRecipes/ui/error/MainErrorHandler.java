@@ -17,9 +17,11 @@ package es.magDevs.myRecipes.ui.error;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Optional;
 
 import org.slf4j.LoggerFactory;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -33,6 +35,8 @@ import com.vaadin.flow.server.DefaultErrorHandler;
 import com.vaadin.flow.server.ErrorEvent;
 import com.vaadin.flow.server.ErrorHandler;
 
+import es.magDevs.myRecipes.ui.common.UtilsUI;
+
 public class MainErrorHandler implements ErrorHandler {
 	
 	public static void handleError(Throwable e) {
@@ -40,10 +44,35 @@ public class MainErrorHandler implements ErrorHandler {
 	}
 
 	@Override
-	public void error(ErrorEvent event) {
-		Throwable t = DefaultErrorHandler.findRelevantThrowable(event.getThrowable());
+	public void error(ErrorEvent throwable) {
+		Throwable t = error(throwable.getThrowable());
+
+		showErrorMsg(t);
+	}
+
+	/**
+	 * Registra el error en el log
+	 * @param error
+	 * @return el error que se registro
+	 */
+	public static Throwable error(Throwable error) {
+		Throwable t = DefaultErrorHandler.findRelevantThrowable(error);
 
 		LoggerFactory.getLogger(MainErrorHandler.class).error("", t);
+		
+		//Enviar email
+		String usuario = null; //TODO asignar el usuario logeado cuando se implemente la gestion de usuarios
+		String ip = UI.getCurrent() == null ? null : UI.getCurrent().getSession().getBrowser().getAddress();
+		String userAgent = UI.getCurrent() == null ? null : UI.getCurrent().getSession().getBrowser().getBrowserApplication();
+		MailManager.enviarError(error, userAgent, usuario, ip);
+		return t;
+	}
+	
+	private void showErrorMsg(Throwable t) {
+		if (UI.getCurrent() == null) {
+			// Si no hay una UI activa no mostramos mensaje
+			return;
+		}
 
 		Button masInf = new Button(VaadinIcon.INFO.create());
 
@@ -77,5 +106,14 @@ public class MainErrorHandler implements ErrorHandler {
 		layout.setAlignItems(Alignment.CENTER);
 		notification.add(layout);
 		notification.open();
+	}
+
+	public static void handleError(Exception e, Optional<UI> ui) {
+		new MainErrorHandler().error(new ErrorEvent(e), ui);
+	}
+
+	public void error(ErrorEvent throwable, Optional<UI> uiOpt) {
+		Throwable t = error(throwable.getThrowable());
+		UtilsUI.accessUI(uiOpt, ()->showErrorMsg(t));
 	}
 }

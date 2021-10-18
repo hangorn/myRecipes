@@ -48,7 +48,9 @@ public class RecipesView extends VerticalLayout {
 		ComboBox<String> combo = new ComboBox<String>("Combo 1");
 		combo.setItems(Arrays.asList("Fila 1", "Fila 2", "Fila 3"));
 		add(btn1, btn2, btn3, grid, combo);
-		
+		btn1.addClickListener(e->{
+			throw new NullPointerException();
+		});
 //		try {
 //			add(""+new RecetasBL().getList().size());
 //		} catch (Exception e) {

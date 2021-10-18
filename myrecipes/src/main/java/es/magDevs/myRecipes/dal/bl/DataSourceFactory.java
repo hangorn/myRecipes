@@ -8,7 +8,9 @@ import javax.naming.RefAddr;
 import javax.naming.Reference;
 import javax.naming.spi.ObjectFactory;
 
-public class SynologyDataSourceFactory implements ObjectFactory {
+import es.magDevs.myRecipes.ui.error.MailDataSource;
+
+public class DataSourceFactory implements ObjectFactory {
 
 	@Override
 	public Object getObjectInstance(Object refObj, Name nm, Context ctx, Hashtable<?,?> env) throws Exception {
@@ -20,6 +22,13 @@ public class SynologyDataSourceFactory implements ObjectFactory {
 			String usr = nullSafeRefAddrStringGet("usr", ref);
 			String pass = nullSafeRefAddrStringGet("pass", ref);
 			return new SynologyDataSource(url, usr, pass);
+		} else if (MailDataSource.class.getName().equals(className)) {
+			String host = nullSafeRefAddrStringGet("host", ref);
+			String port = nullSafeRefAddrStringGet("port", ref);
+			String usr = nullSafeRefAddrStringGet("usr", ref);
+			String pass = nullSafeRefAddrStringGet("pass", ref);
+			String mailto = nullSafeRefAddrStringGet("mailto", ref);
+			return new MailDataSource(host, port, usr, pass, mailto);
 		}
 		return null;
 	}
